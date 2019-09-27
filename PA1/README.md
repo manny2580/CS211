@@ -8,3 +8,5 @@ This project is made up of 6 smaller programs written in C.
 4. Matrix Multiplication
 5. String Operations (2)
 6. Binary Search Tre
+
+To access the project files, go into /autograder/pa1

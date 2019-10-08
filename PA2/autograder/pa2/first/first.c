@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int set(int x, int n, int v)
+unsigned short set(int x, int n, int v)
 {
 
 }
 
-int comp(int x, int n)
+unsigned short comp(int x, int n)
 {
 
 }
 
-int get (int x, int n)
+unsigned short get (int x, int n)
 {
 
 }

@@ -56,4 +56,7 @@ int main(int argc, char* argv[])
             get(x, n);
         }
     }
+
+    fclose(file);
+    return 0;
 }

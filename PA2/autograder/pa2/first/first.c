@@ -27,13 +27,18 @@ unsigned short set(int x, int n, int v)
 
     if (v == 1)
     {
-        y = (1 << n) | x; return y;
+        y = (1 << n) | x; 
+        return y;
     }
 }
 
 unsigned short comp(int x, int n)
 {
+    int t = (x >> n) & 1;
+    if (t == 1)
+    {
 
+    }
 }
 
 unsigned short get(int x, int n)
@@ -61,14 +66,17 @@ int main(int argc, char* argv[])
         if(compare(whatDo, "set") == 0)
         {
             set(x, n, s);
+            printf("\n");
         }
         else if(compare(whatDo, "comp") == 0)
         {
             comp(x, n);
+            printf("\n");
         }
         else if (compare(whatDo, "get") == 0)
         {
             get(x, n);
+            printf("\n");
         }
     }
 

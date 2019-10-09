@@ -11,7 +11,7 @@ unsigned short comp(int x, int n)
 
 }
 
-unsigned short get (int x, int n)
+unsigned short get(int x, int n)
 {
 
 }

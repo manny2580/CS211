@@ -13,7 +13,22 @@ int compare(char* s1, char* s2)
 
 unsigned short set(int x, int n, int v)
 {
+    int t = (x >> n) & 1;
+    int y;
+    if (t == v)
+    {
+        return y;
+    }
 
+    if (v == 0)
+    {
+        y = x ^ (1 << n);
+    }
+
+    if (v == 1)
+    {
+        y = (1 << n) | x; return y;
+    }
 }
 
 unsigned short comp(int x, int n)
@@ -45,7 +60,7 @@ int main(int argc, char* argv[])
         fscanf(file, "%s\t%d\t%d\n", whatDo, &n, &s);
         if(compare(whatDo, "set") == 0)
         {
-            set(x, n, s)
+            set(x, n, s);
         }
         else if(compare(whatDo, "comp") == 0)
         {

@@ -13,7 +13,8 @@ unsigned short comp(int x, int n)
 
 unsigned short get(int x, int n)
 {
-
+    int ans = (x >> n) & 1;
+    return ans;
 }
 
 int main(int argc, char* argv[])

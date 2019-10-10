@@ -14,7 +14,7 @@ int compare(char* s1, char* s2)
 unsigned short set(int x, int n, int v)
 {
     int t = (x >> n) & 1;
-    int y;
+    int y = 0;
     if (t == v)
     {
         return y;
@@ -30,15 +30,13 @@ unsigned short set(int x, int n, int v)
         y = (1 << n) | x; 
         return y;
     }
+    return y;
 }
 
 unsigned short comp(int x, int n)
 {
     int t = (x >> n) & 1;
-    if (t == 1)
-    {
-
-    }
+    return !t;
 }
 
 unsigned short get(int x, int n)
@@ -65,18 +63,15 @@ int main(int argc, char* argv[])
         fscanf(file, "%s\t%d\t%d\n", whatDo, &n, &s);
         if(compare(whatDo, "set") == 0)
         {
-            set(x, n, s);
-            printf("\n");
+            printf("%d\n", set(x, n, s));
         }
         else if(compare(whatDo, "comp") == 0)
         {
-            comp(x, n);
-            printf("\n");
+            printf("%d\n", comp(x,n));
         }
         else if (compare(whatDo, "get") == 0)
         {
-            get(x, n);
-            printf("\n");
+            printf("%d\n", get(x,n));
         }
     }
 

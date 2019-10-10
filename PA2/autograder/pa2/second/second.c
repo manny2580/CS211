@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
             }
         }
         else
-        {
+        { 
             a = a >> 1;
         }
     }

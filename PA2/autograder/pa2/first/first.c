@@ -15,9 +15,9 @@ unsigned short set(int x, int n, int v)
 {
     int bit = (x >> n) & 1;
     unsigned short res;
-    if (bit == v)
+    if (v == bit)
     {
-        res = x;
+        return x;
     }
     else if (v == 0)
     {

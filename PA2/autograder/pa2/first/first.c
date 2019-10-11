@@ -13,24 +13,7 @@ int compare(char* s1, char* s2)
 
 unsigned short set(int x, int n, int v)
 {
-    int t = (x >> n) & 1;
-    int y = 0;
-    if (t == v)
-    {
-        return y;
-    }
-
-    if (v == 0)
-    {
-        y = x ^ (1 << n);
-    }
-
-    if (v == 1)
-    {
-        y = (1 << n) | x; 
-        return y;
-    }
-    return y;
+    return (1 << n) | x;
 }
 
 unsigned short comp(int x, int n)

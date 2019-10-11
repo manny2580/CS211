@@ -19,14 +19,11 @@ unsigned short set(int x, int n, int v)
     {
         return x;
     }
-    else if (v == 0)
+    else
     {
-        res = x ^ (1 << n);
+        res = (x ^ (1 << (n-1))); //toggle bit
     }
-    else if (v == 1)
-    {
-        res = (1 << n) | x;
-    }
+    
     return res;
 }
 

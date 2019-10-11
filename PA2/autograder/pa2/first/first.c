@@ -18,16 +18,15 @@ unsigned short set(int x, int n, int v)
     {
         return x;
     }
-    if (bit == 0)
+    else if (bit == 0)
     {
         x = x ^ (1 << n);
-        return x;
     }
-    if (bit == 1)
+    else if (bit == 1)
     {
         x = (1 << n) | x;
-        return x;
     }
+    return x;
 }
 
 unsigned short comp(int x, int n)
@@ -46,13 +45,12 @@ unsigned short comp(int x, int n)
     if (c == 0)
     {
         x = x ^ (1 >> n);
-        return x;
     }
-    if (c == 1)
+    else if (c == 1)
     {
         x = (1 << n) | x;
-        return x;
     }
+    return x;
 }
 
 unsigned short get(int x, int n)
@@ -69,25 +67,28 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    int x, n, s;
+    int x, n, v;
     char whatDo[10];
 
     fscanf(file, "%d", &x);
 
     while(!feof(file))
     {
-        fscanf(file, "%s\t%d\t%d\n", whatDo, &n, &s);
+        fscanf(file, "%s\t%d\t%d\n", whatDo, &n, &v);
         if(compare(whatDo, "set") == 0)
         {
-            printf("%d\n", set(x, n, s));
+            printf("%d\n", set(x, n, v));
+            continue;
         }
         else if(compare(whatDo, "comp") == 0)
         {
             printf("%d\n", comp(x,n));
+            continue;
         }
         else if (compare(whatDo, "get") == 0)
         {
             printf("%d\n", get(x,n));
+            continue;
         }
     }
 

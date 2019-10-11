@@ -14,19 +14,20 @@ int compare(char* s1, char* s2)
 unsigned short set(int x, int n, int v)
 {
     int bit = (x >> n) & 1;
+    unsigned short res;
     if (bit == v)
     {
-        return x;
+        res = x;
     }
-    else if (bit == 0)
+    else if (v == 0)
     {
-        x = x ^ (1 << n);
+        res = x ^ (1 << n);
     }
-    else if (bit == 1)
+    else if (v == 1)
     {
-        x = (1 << n) | x;
+        res = (1 << n) | x;
     }
-    return x;
+    return res;
 }
 
 unsigned short comp(int x, int n)
@@ -42,21 +43,22 @@ unsigned short comp(int x, int n)
         c = 1;
     }
 
+    unsigned short res;
+
     if (c == 0)
     {
-        x = x ^ (1 >> n);
+        res = x ^ (1 << n);
     }
     else if (c == 1)
     {
-        x = (1 << n) | x;
+        res = (1 << n) | x;
     }
-    return x;
+    return res;
 }
 
 unsigned short get(int x, int n)
 {
-    int ans = (x >> n) & 1;
-    return ans;
+    return (x >> n) & 1;
 }
 
 int main(int argc, char* argv[])
@@ -78,17 +80,14 @@ int main(int argc, char* argv[])
         if(compare(whatDo, "set") == 0)
         {
             printf("%d\n", set(x, n, v));
-            continue;
         }
         else if(compare(whatDo, "comp") == 0)
         {
             printf("%d\n", comp(x,n));
-            continue;
         }
         else if (compare(whatDo, "get") == 0)
         {
             printf("%d\n", get(x,n));
-            continue;
         }
     }
 

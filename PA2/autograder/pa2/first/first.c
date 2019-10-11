@@ -13,13 +13,46 @@ int compare(char* s1, char* s2)
 
 unsigned short set(int x, int n, int v)
 {
-    return (1 << n) | x;
+    int bit = (x >> n) & 1;
+    if (bit == v)
+    {
+        return x;
+    }
+    if (bit == 0)
+    {
+        x = x ^ (1 << n);
+        return x;
+    }
+    if (bit == 1)
+    {
+        x = (1 << n) | x;
+        return x;
+    }
 }
 
 unsigned short comp(int x, int n)
 {
-    int t = (x >> n) & 1;
-    return !t;
+    int bit = (x >> n) & 1;
+    int c;
+    if (bit == 1)
+    {
+        c = 0;
+    }
+    else
+    {
+        c = 1;
+    }
+
+    if (c == 0)
+    {
+        x = x ^ (1 >> n);
+        return x;
+    }
+    if (c == 1)
+    {
+        x = (1 << n) | x;
+        return x;
+    }
 }
 
 unsigned short get(int x, int n)

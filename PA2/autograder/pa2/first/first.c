@@ -13,44 +13,17 @@ int compare(char* s1, char* s2)
 
 unsigned short set(int x, int n, int v)
 {
-    int bit = (x >> n) & 1;
-    unsigned short res;
-    if (v == bit)
+    int bit = (1 << n);
+    if (v == 0)
     {
-        return x;
+        return x & ~bit;
     }
-    else
-    {
-        res = (x ^ (1 << n)); //toggle bit
-    }
-    
-    return res;
+    return (x|bit);
 }
 
 unsigned short comp(int x, int n)
 {
-    int bit = (x >> n) & 1;
-    int c;
-    if (bit == 1)
-    {
-        c = 0;
-    }
-    else
-    {
-        c = 1;
-    }
-
-    unsigned short res;
-
-    if (c == 0)
-    {
-        res = x ^ (1 << n);
-    }
-    else if (c == 1)
-    {
-        res = (1 << n) | x;
-    }
-    return res;
+    return x ^ (1 << n);
 }
 
 unsigned short get(int x, int n)
@@ -76,14 +49,17 @@ int main(int argc, char* argv[])
         fscanf(file, "%s\t%d\t%d\n", whatDo, &n, &v);
         if(compare(whatDo, "set") == 0)
         {
-            printf("%d\n", set(x, n, v));
+            x = set(x,n,v);
+            printf("%d\n", x);
         }
         else if(compare(whatDo, "comp") == 0)
         {
+            //x = comp(x,n);
             printf("%d\n", comp(x,n));
         }
         else if (compare(whatDo, "get") == 0)
         {
+            //x = get(x,n);
             printf("%d\n", get(x,n));
         }
     }

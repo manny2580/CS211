@@ -21,7 +21,7 @@ unsigned short set(int x, int n, int v)
     }
     else
     {
-        res = (x ^ (1 << (n-1))); //toggle bit
+        res = (x ^ (1 << n)); //toggle bit
     }
     
     return res;

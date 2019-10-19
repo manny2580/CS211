@@ -28,7 +28,9 @@ unsigned short comp(int x, int n)
 
 unsigned short get(int x, int n)
 {
-    return (x >> n) & 1;
+    unsigned short mask = 1 << n;
+    unsigned short z = x & mask;
+    return z >> n;
 }
 
 int main(int argc, char* argv[])
@@ -54,8 +56,8 @@ int main(int argc, char* argv[])
         }
         else if(compare(whatDo, "comp") == 0)
         {
-            //x = comp(x,n);
-            printf("%d\n", comp(x,n));
+            x = comp(x,n);
+            printf("%d\n", x);
         }
         else if (compare(whatDo, "get") == 0)
         {

@@ -459,7 +459,7 @@ Disassembly of section .text:
  8048c37:	89 74 24 04          	mov    %esi,0x4(%esp)
  8048c3b:	8d 43 ff             	lea    -0x1(%ebx),%eax
  8048c3e:	89 04 24             	mov    %eax,(%esp)
- 8048c41:	e8 d8 ff ff ff       	call   8048c1e <func4>
+ 8048c41:	e8 d8 ff ff ff       	call   8048c1e <func4>			//keeps decreasing eax & ebx 
  8048c46:	8d 3c 30             	lea    (%eax,%esi,1),%edi
  8048c49:	89 74 24 04          	mov    %esi,0x4(%esp)
  8048c4d:	83 eb 02             	sub    $0x2,%ebx
@@ -495,8 +495,8 @@ Disassembly of section .text:
  8048ca5:	8b 44 24 1c          	mov    0x1c(%esp),%eax
  8048ca9:	89 44 24 04          	mov    %eax,0x4(%esp)
  8048cad:	c7 04 24 09 00 00 00 	movl   $0x9,(%esp)
- 8048cb4:	e8 65 ff ff ff       	call   8048c1e <func4>
- 8048cb9:	3b 44 24 18          	cmp    0x18(%esp),%eax
+ 8048cb4:	e8 65 ff ff ff       	call   8048c1e <func4>					//eax = 8 at start?
+ 8048cb9:	3b 44 24 18          	cmp    0x18(%esp),%eax					//compare 2 to eax 
  8048cbd:	74 05                	je     8048cc4 <phase_4+0x5c>
  8048cbf:	e8 81 04 00 00       	call   8049145 <explode_bomb>
  8048cc4:	83 c4 2c             	add    $0x2c,%esp

@@ -514,22 +514,22 @@ Disassembly of section .text:
  8048ce7:	89 04 24             	mov    %eax,(%esp)
  8048cea:	e8 21 fb ff ff       	call   8048810 <__isoc99_sscanf@plt>	//input read
  8048cef:	83 f8 01             	cmp    $0x1,%eax
- 8048cf2:	7f 05                	jg     8048cf9 <phase_5+0x31>			//first input > 1
+ 8048cf2:	7f 05                	jg     8048cf9 <phase_5+0x31>			//first input > 1.....but 0 works??? hmmm
  8048cf4:	e8 4c 04 00 00       	call   8049145 <explode_bomb>
  8048cf9:	8b 44 24 1c          	mov    0x1c(%esp),%eax					//move 2nd number to eax
- 8048cfd:	83 e0 0f             	and    $0xf,%eax
+ 8048cfd:	83 e0 0f             	and    $0xf,%eax						//bitwise AND with 15 and 2nd number 
  8048d00:	89 44 24 1c          	mov    %eax,0x1c(%esp)
- 8048d04:	83 f8 0f             	cmp    $0xf,%eax
- 8048d07:	74 2a                	je     8048d33 <phase_5+0x6b>
- 8048d09:	b9 00 00 00 00       	mov    $0x0,%ecx
- 8048d0e:	ba 00 00 00 00       	mov    $0x0,%edx
- 8048d13:	83 c2 01             	add    $0x1,%edx
- 8048d16:	8b 04 85 60 a1 04 08 	mov    0x804a160(,%eax,4),%eax
- 8048d1d:	01 c1                	add    %eax,%ecx
- 8048d1f:	83 f8 0f             	cmp    $0xf,%eax
- 8048d22:	75 ef                	jne    8048d13 <phase_5+0x4b>
+ 8048d04:	83 f8 0f             	cmp    $0xf,%eax						//compare 15 with 2nd number
+ 8048d07:	74 2a                	je     8048d33 <phase_5+0x6b>			//if equal, explode
+ 8048d09:	b9 00 00 00 00       	mov    $0x0,%ecx						//ecx = 0
+ 8048d0e:	ba 00 00 00 00       	mov    $0x0,%edx						//edx = 0
+ 8048d13:	83 c2 01             	add    $0x1,%edx						//edx = 1 -- START OF LOOP
+ 8048d16:	8b 04 85 60 a1 04 08 	mov    0x804a160(,%eax,4),%eax			//0x804a160 = 10 - ARRAY? [10 2 14 7 8 12 15 11 0 4 1 13 3 9 6 5]
+ 8048d1d:	01 c1                	add    %eax,%ecx						//ecx is the sum of all the elements
+ 8048d1f:	83 f8 0f             	cmp    $0xf,%eax						//compare eax with 15
+ 8048d22:	75 ef                	jne    8048d13 <phase_5+0x4b>			//loop back to d13 if eax != 15
  8048d24:	89 44 24 1c          	mov    %eax,0x1c(%esp)
- 8048d28:	83 fa 0f             	cmp    $0xf,%edx
+ 8048d28:	83 fa 0f             	cmp    $0xf,%edx						//compare edx with 15, explode if not equal. EDX MUST BE 15 - loop runs 15 times??
  8048d2b:	75 06                	jne    8048d33 <phase_5+0x6b>
  8048d2d:	3b 4c 24 18          	cmp    0x18(%esp),%ecx
  8048d31:	74 05                	je     8048d38 <phase_5+0x70>

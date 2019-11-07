@@ -474,7 +474,7 @@ Disassembly of section .text:
  8048c66:	5f                   	pop    %edi
  8048c67:	c3                   	ret    
 
-08048c68 <phase_4>: //2 3
+08048c68 <phase_4>: //(n) (4,3,2)
  8048c68:	83 ec 2c             	sub    $0x2c,%esp
  8048c6b:	8d 44 24 1c          	lea    0x1c(%esp),%eax
  8048c6f:	89 44 24 0c          	mov    %eax,0xc(%esp)
@@ -485,7 +485,7 @@ Disassembly of section .text:
  8048c83:	8b 44 24 30          	mov    0x30(%esp),%eax
  8048c87:	89 04 24             	mov    %eax,(%esp)
  8048c8a:	e8 81 fb ff ff       	call   8048810 <__isoc99_sscanf@plt>	//input read
- 8048c8f:	83 f8 02             	cmp    $0x2,%eax						//first input is 2
+ 8048c8f:	83 f8 02             	cmp    $0x2,%eax						//2 inputs
  8048c92:	75 0c                	jne    8048ca0 <phase_4+0x38>			//ca0 = explode
  8048c94:	8b 44 24 1c          	mov    0x1c(%esp),%eax
  8048c98:	83 e8 02             	sub    $0x2,%eax						//subtract 2 from eax
@@ -494,9 +494,9 @@ Disassembly of section .text:
  8048ca0:	e8 a0 04 00 00       	call   8049145 <explode_bomb>
  8048ca5:	8b 44 24 1c          	mov    0x1c(%esp),%eax
  8048ca9:	89 44 24 04          	mov    %eax,0x4(%esp)
- 8048cad:	c7 04 24 09 00 00 00 	movl   $0x9,(%esp)
- 8048cb4:	e8 65 ff ff ff       	call   8048c1e <func4>					//eax = 8 at start?
- 8048cb9:	3b 44 24 18          	cmp    0x18(%esp),%eax					//compare 2 to eax 
+ 8048cad:	c7 04 24 09 00 00 00 	movl   $0x9,(%esp)						//esp = 9
+ 8048cb4:	e8 65 ff ff ff       	call   8048c1e <func4>					
+ 8048cb9:	3b 44 24 18          	cmp    0x18(%esp),%eax					//compare esp + 0x18 (2) to eax (value returned from func4)
  8048cbd:	74 05                	je     8048cc4 <phase_4+0x5c>
  8048cbf:	e8 81 04 00 00       	call   8049145 <explode_bomb>
  8048cc4:	83 c4 2c             	add    $0x2c,%esp

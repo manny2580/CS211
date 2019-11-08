@@ -449,7 +449,7 @@ Disassembly of section .text:
   40101a:	be cf 25 40 00       	mov    $0x4025cf,%esi                 //INPUT IS 2 NUMBERS
   40101f:	b8 00 00 00 00       	mov    $0x0,%eax                      //clear return value
   401024:	e8 c7 fb ff ff       	callq  400bf0 <__isoc99_sscanf@plt>   //take in input
-  401029:	83 f8 02             	cmp    $0x2,%eax                      //if not = 2, explode (first input is 2)
+  401029:	83 f8 02             	cmp    $0x2,%eax                      //2 inputs
   40102c:	75 07                	jne    401035 <phase_4+0x29>
   40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp)                 //compare 14 to whatever is 8 away from rsp
   401033:	76 05                	jbe    40103a <phase_4+0x2e>          //if below, explode

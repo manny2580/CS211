@@ -502,7 +502,7 @@ Disassembly of section .text:
  8048cc4:	83 c4 2c             	add    $0x2c,%esp
  8048cc7:	c3                   	ret    
 
-08048cc8 <phase_5>:
+08048cc8 <phase_5>: //5 115
  8048cc8:	83 ec 2c             	sub    $0x2c,%esp
  8048ccb:	8d 44 24 18          	lea    0x18(%esp),%eax
  8048ccf:	89 44 24 0c          	mov    %eax,0xc(%esp)
@@ -524,14 +524,14 @@ Disassembly of section .text:
  8048d09:	b9 00 00 00 00       	mov    $0x0,%ecx						//ecx = 0
  8048d0e:	ba 00 00 00 00       	mov    $0x0,%edx						//edx = 0
  8048d13:	83 c2 01             	add    $0x1,%edx						//edx = 1 -- START OF LOOP
- 8048d16:	8b 04 85 60 a1 04 08 	mov    0x804a160(,%eax,4),%eax			//0x804a160 = 10 - ARRAY? [10 2 14 7 8 12 15 11 0 4 1 13 3 9 6 5]
+ 8048d16:	8b 04 85 60 a1 04 08 	mov    0x804a160(,%eax,4),%eax			//0x804a160 = 10 - ARRAY? [10 2 14 7 8 12 15 11 0 4 1 13 3 9 6 5] puts nth # in eax
  8048d1d:	01 c1                	add    %eax,%ecx						//ecx is the sum of all the elements
  8048d1f:	83 f8 0f             	cmp    $0xf,%eax						//compare eax with 15
  8048d22:	75 ef                	jne    8048d13 <phase_5+0x4b>			//loop back to d13 if eax != 15
  8048d24:	89 44 24 1c          	mov    %eax,0x1c(%esp)
  8048d28:	83 fa 0f             	cmp    $0xf,%edx						//compare edx with 15, explode if not equal. EDX MUST BE 15 - loop runs 15 times??
  8048d2b:	75 06                	jne    8048d33 <phase_5+0x6b>
- 8048d2d:	3b 4c 24 18          	cmp    0x18(%esp),%ecx
+ 8048d2d:	3b 4c 24 18          	cmp    0x18(%esp),%ecx					//115
  8048d31:	74 05                	je     8048d38 <phase_5+0x70>
  8048d33:	e8 0d 04 00 00       	call   8049145 <explode_bomb>
  8048d38:	83 c4 2c             	add    $0x2c,%esp
@@ -545,7 +545,7 @@ Disassembly of section .text:
  8048d45:	89 44 24 04          	mov    %eax,0x4(%esp)
  8048d49:	8b 44 24 50          	mov    0x50(%esp),%eax
  8048d4d:	89 04 24             	mov    %eax,(%esp)
- 8048d50:	e8 2f 04 00 00       	call   8049184 <read_six_numbers>
+ 8048d50:	e8 2f 04 00 00       	call   8049184 <read_six_numbers>	//INPUT IS 6 NUMBERS
  8048d55:	be 00 00 00 00       	mov    $0x0,%esi
  8048d5a:	8b 44 b4 28          	mov    0x28(%esp,%esi,4),%eax
  8048d5e:	83 e8 01             	sub    $0x1,%eax

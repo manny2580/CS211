@@ -537,7 +537,7 @@ Disassembly of section .text:
  8048d38:	83 c4 2c             	add    $0x2c,%esp
  8048d3b:	c3                   	ret    
 
-08048d3c <phase_6>:
+08048d3c <phase_6>: //6 numbers, unique inputs, all under 6. 6 NODES . LINKED LIST. 3 1
  8048d3c:	56                   	push   %esi
  8048d3d:	53                   	push   %ebx
  8048d3e:	83 ec 44             	sub    $0x44,%esp
@@ -608,7 +608,24 @@ Disassembly of section .text:
  8048e0a:	83 c4 44             	add    $0x44,%esp
  8048e0d:	5b                   	pop    %ebx
  8048e0e:	5e                   	pop    %esi
- 8048e0f:	c3                   	ret    
+ 8048e0f:	c3                   	ret
+
+3 2 1 6 4 5
+(gdb) x /3x $ebx
+0x804c0a0 <node1>:      0x000000cf      0x00000001      0x0804c0ac (207)
+(gdb) x /3x *($ebx + 8)
+0x804c0ac <node2>:      0x00000088      0x00000002      0x0804c0b8 (136)
+(gdb) x /3x *($ebx + 8)
+0x804c0ac <node2>:      0x00000088      0x00000002      0x0804c0b8 
+(gdb) x /3x *(*($ebx + 8) + 8)
+0x804c0b8 <node3>:      0x00000066      0x00000003      0x0804c0c4 (102)
+(gdb) x /3x *(*(*($ebx + 8) + 8) + 8)
+0x804c0c4 <node4>:      0x00000179      0x00000004      0x0804c0d0 (377)
+(gdb) x /3x *(*(*(*($ebx + 8) + 8) + 8)+ 8)
+0x804c0d0 <node5>:      0x000001c4      0x00000005      0x0804c0dc (452)
+(gdb) x /3x *(*(*(*(*($ebx + 8) + 8) + 8)+ 8)+8)
+0x804c0dc <node6>:      0x000000fc      0x00000006      0x00000000 (252)
+
 
 08048e10 <sig_handler>:
  8048e10:	83 ec 1c             	sub    $0x1c,%esp

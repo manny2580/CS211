@@ -1,4 +1,4 @@
-# PA1
+# PA1: Starting C
 
 This project is made up of 6 smaller programs written in C.
 

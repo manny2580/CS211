@@ -9,7 +9,7 @@
  * 
  * Todo:
  * Code each of the operations (NOT, AND, OR, NAND, NOR, XOR)
- * Main method - read file + how to keep track of combinations of inputs
+ * Main method - read file + how to keep track of combinations of inputs - greycode?
  * */
 
 int not(int* in)

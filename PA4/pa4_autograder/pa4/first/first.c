@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 /*
  * Input: a file listing a circuit description + directives on each line
@@ -9,9 +12,54 @@
  * 
  * Todo:
  * Code each of the operations (NOT, AND, OR, NAND, NOR, XOR)
- * Main method - read file + how to keep track of combinations of inputs - greycode?
+ * Main method - read file + how to keep track of combinations of inputs
  * */
 
+//LINKED LIST
+
+typedef struct node
+{
+    char* var;
+    int val;
+    node *next;
+} node;
+
+node* makeNode(char* v, int value, node* n)
+{
+    node* newNode = (node*)malloc(sizeof(Node));
+    if (newNode == NULL)
+    {
+        exit(0);
+    }
+    newNode->var = v;
+    newNode->val = value;
+    newNode->next = n;
+
+    return newNode;
+}
+
+node* add(node* head; int value; char* varName)
+{
+    node* newNode = makeNode(varName, value, head);
+    head = newNode;
+    return head;
+}
+
+node* search(node* head, char* var)
+{
+    node *ptr = head;
+    while (ptr != NULL)
+    {
+        if (ptr->var == var)
+        {
+            return ptr->val;
+        }
+        ptr = ptr->next;
+    }
+    return -1;
+}
+
+//OPERATIONS
 int not(int* in)
 {
     if (in == 1)
@@ -67,6 +115,56 @@ int main(int argc, char* argv[])
     if (file == NULL)
     {
         return 0;
+    }
+
+    char[4] op;
+    char[20] in1;
+    char[20] in2;
+    char[20] out;
+
+    while (!feof(file))
+    {
+        fscanf(file, "%s ", op);
+
+        if(strcmp(op, "INPUTVAR") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "OUTPUTVAR") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "NOT") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "AND") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "OR") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "NAND") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "NOR") == 0)
+        {
+
+        }
+
+        else if(strcmp(op, "XOR") == 0)
+        {
+            
+        }
     }
 
     //use arrays for the inputs/outputs? because sizes are given

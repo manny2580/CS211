@@ -150,22 +150,24 @@ int main(int argc, char* argv[])
     char* in2;
     char* out;
 
-    node* inputs = NULL;
-    node* outputs = NULL;
+    char** inputs = NULL;
+    char** outputs = NULL;
+    char** answers = NULL;
     node* temps = NULL;
 
     //inputs
     fscanf(file, "%s %d ", &op, &numVars);
     int temp[numVars];
     int combos[] = genSols(numVars, combos, 0);
-    
-    node* inputs = NULL;
+
     for (int i = 0; i < numVars; i++)
     {
         char* nameVar;
         fscanf(file, "%s", &nameVar);
-        add(inputs, 0, )
+        inputs[i] = nameVar;
     }
+
+    //outputs
 
     //FOR EACH COMBINATION OF INPUTS
     while (!feof(file))

@@ -121,6 +121,12 @@ int xor(int* in1, int* in2)
     return 1;
 }
 
+//generate solution array
+int** genSols(int i, int n)
+{
+
+}
+
 int main(int argc, char* argv[])
 {
     FILE *file = fopen(argv[1], "r");
@@ -134,6 +140,10 @@ int main(int argc, char* argv[])
     char* in1;
     char* in2;
     char* out;
+
+    node* inputs = NULL;
+    node* outputs = NULL;
+    node* temps = NULL;
 
     //inputs
     fscanf(file, "%s %d ", &op, &numVars);
@@ -153,7 +163,6 @@ int main(int argc, char* argv[])
         if (strcmp(op, "INPUTVAR") == 0)
         {
             fscanf(file, "%d ", &numVars);
-            node* inputs = NULL;
             for (int i = 0; i < numVars; i++)
             {
                 char* nameVar;
@@ -164,7 +173,13 @@ int main(int argc, char* argv[])
 
         else if (strcmp(op, "OUTPUTVAR") == 0)
         {
-            
+            fscanf(file, "%d ", &numVars);
+            for (int i = 0; i < numVars; i++)
+            {
+                char* nameVar;
+                fscanf(file, "%s", &nameVar);
+                add(inputs, 0, )
+            }
         }
 
         else if(strcmp(op, "NOT") == 0)
@@ -200,6 +215,8 @@ int main(int argc, char* argv[])
         //move to next line
     }
 
+    //PRINT FORMAT CORRECTLY
+    
     //use arrays for the inputs/outputs? because sizes are given
     //loop - for each line, set variables accordingly, then figure out the instruction - do that instruction
 }

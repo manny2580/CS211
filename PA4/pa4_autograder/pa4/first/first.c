@@ -41,7 +41,19 @@ node* makeNode(char* v, int value, node* n)
 node* add(node* head; int value; char* varName)
 {
     node* newNode = makeNode(varName, value, head);
-    head = newNode;
+    if (head == NULL) //empty LL
+    {
+        head = newNode;
+    }
+    else
+    {
+        node* ptr = head;
+        while (ptr->next != NULL)
+        {
+            ptr = ptr->next;
+        }
+        ptr->next = newNode;
+    }
     return head;
 }
 
@@ -117,23 +129,42 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    char[4] op;
-    char[20] in1;
-    char[20] in2;
-    char[20] out;
+    char* op;
+    int numVars;
+    char* in1;
+    char* in2;
+    char* out;
 
+    //inputs
+    fscanf(file, "%s %d ", &op, &numVars);
+    node* inputs = NULL;
+    for (int i = 0; i < numVars; i++)
+    {
+        char* nameVar;
+        fscanf(file, "%s", &nameVar);
+        add(inputs, 0, )
+    }
+
+    //FOR EACH COMBINATION OF INPUTS
     while (!feof(file))
     {
-        fscanf(file, "%s ", op);
+        fscanf(file, "%s ", &op);
 
-        if(strcmp(op, "INPUTVAR") == 0)
+        if (strcmp(op, "INPUTVAR") == 0)
         {
-
+            fscanf(file, "%d ", &numVars);
+            node* inputs = NULL;
+            for (int i = 0; i < numVars; i++)
+            {
+                char* nameVar;
+                fscanf(file, "%s", &nameVar);
+                add(inputs, 0, )
+            }
         }
 
-        else if(strcmp(op, "OUTPUTVAR") == 0)
+        else if (strcmp(op, "OUTPUTVAR") == 0)
         {
-
+            
         }
 
         else if(strcmp(op, "NOT") == 0)
@@ -163,8 +194,10 @@ int main(int argc, char* argv[])
 
         else if(strcmp(op, "XOR") == 0)
         {
-            
+
         }
+
+        //move to next line
     }
 
     //use arrays for the inputs/outputs? because sizes are given

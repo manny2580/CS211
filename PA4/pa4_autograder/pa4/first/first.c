@@ -122,9 +122,18 @@ int xor(int* in1, int* in2)
 }
 
 //generate solution array
-int** genSols(int i, int n)
+int[] genSols(int* n, int[]* a, int* i)
 {
+    if (i == n)
+    {
+        return a;
+    }
 
+    a[i] = 0;
+    genSols(n, a, i+1);
+
+    arr[i] = 1;
+    genSols(n, a, i+1);
 }
 
 int main(int argc, char* argv[])
@@ -147,6 +156,9 @@ int main(int argc, char* argv[])
 
     //inputs
     fscanf(file, "%s %d ", &op, &numVars);
+    int temp[numVars];
+    int combos[] = genSols(numVars, combos, 0);
+    
     node* inputs = NULL;
     for (int i = 0; i < numVars; i++)
     {

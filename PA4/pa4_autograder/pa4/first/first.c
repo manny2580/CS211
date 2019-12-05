@@ -144,89 +144,80 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    char* op;
-    int numVars;
-    char* in1;
-    char* in2;
-    char* out;
+    char* op; //operation string
+    int numVars = 0; //number of variables
+    char* in1; //first arg
+    char* in2; //second arg
+    char* out; //output variable
 
-    char** inputs = NULL;
-    char** outputs = NULL;
-    char** answers = NULL;
-    node* temps = NULL;
+    char** inputs = NULL; //array of INPUTVARS
+    char** outputs = NULL; //array of OUTPUTVARS
+    char** answers = NULL; //array of answers
+    node* temps = NULL; //linkedlist of temp vars
+    char* nameVar; //temp variable to store names
 
     //inputs
     fscanf(file, "%s %d ", &op, &numVars);
     int temp[numVars];
-    int combos[] = genSols(numVars, combos, 0);
+    int combos[] = genSols(numVars, combos, 0); //solution array
 
     for (int i = 0; i < numVars; i++)
     {
-        char* nameVar;
         fscanf(file, "%s", &nameVar);
         inputs[i] = nameVar;
     }
 
     //outputs
+    fscanf(file, "%s %d ", &op, &numVars);
+    for (int j = 0; j < numVars; j++)
+    {
+        fscanf(file, "%s", &nameVar);
+        outputs[j] = nameVar;
+    }
 
     //FOR EACH COMBINATION OF INPUTS
-    while (!feof(file))
+    //set input vars equal to the solution array's row
+    //then
+    for (int k = 0; k < pow(2, numVars); k++)
     {
-        fscanf(file, "%s ", &op);
-
-        if (strcmp(op, "INPUTVAR") == 0)
+        
+        while (!feof(file))
         {
-            fscanf(file, "%d ", &numVars);
-            for (int i = 0; i < numVars; i++)
+            fscanf(file, "%s ", &op);
+            if(strcmp(op, "NOT") == 0)
             {
-                char* nameVar;
-                fscanf(file, "%s", &nameVar);
-                add(inputs, 0, )
+                fscanf(file, "%s %s %s \n",)
             }
-        }
 
-        else if (strcmp(op, "OUTPUTVAR") == 0)
-        {
-            fscanf(file, "%d ", &numVars);
-            for (int i = 0; i < numVars; i++)
+            else if(strcmp(op, "AND") == 0)
             {
-                char* nameVar;
-                fscanf(file, "%s", &nameVar);
-                add(inputs, 0, )
+
             }
+
+            else if(strcmp(op, "OR") == 0)
+            {
+
+            }
+
+            else if(strcmp(op, "NAND") == 0)
+            {
+
+            }
+
+            else if(strcmp(op, "NOR") == 0)
+            {
+
+            }
+
+            else if(strcmp(op, "XOR") == 0)
+            {
+
+            }
+
+            //set respective position in solution array
+            //move to next line
         }
 
-        else if(strcmp(op, "NOT") == 0)
-        {
-
-        }
-
-        else if(strcmp(op, "AND") == 0)
-        {
-
-        }
-
-        else if(strcmp(op, "OR") == 0)
-        {
-
-        }
-
-        else if(strcmp(op, "NAND") == 0)
-        {
-
-        }
-
-        else if(strcmp(op, "NOR") == 0)
-        {
-
-        }
-
-        else if(strcmp(op, "XOR") == 0)
-        {
-
-        }
-
-        //move to next line
     }
 
     //PRINT FORMAT CORRECTLY

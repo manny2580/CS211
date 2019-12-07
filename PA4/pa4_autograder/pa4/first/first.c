@@ -21,12 +21,12 @@ typedef struct node
 {
     char* var;
     int val;
-    node *next;
+    struct node *next;
 } node;
 
 node* makeNode(char* v, int value, node* n)
 {
-    node* newNode = (node*)malloc(sizeof(Node));
+    node* newNode = (node*)malloc(sizeof(node));
     if (newNode == NULL)
     {
         exit(0);
@@ -38,7 +38,7 @@ node* makeNode(char* v, int value, node* n)
     return newNode;
 }
 
-node* add(node* head; int value; char* varName)
+node* add(node* head, int value, char* varName)
 {
     node* newNode = makeNode(varName, value, head);
     if (head == NULL) //empty LL
@@ -57,7 +57,17 @@ node* add(node* head; int value; char* varName)
     return head;
 }
 
-node* search(node* head, char* var)
+node* get(node* head, int num)
+{
+    node* ptr = head;
+    for (int i = 0; i < num; i++)
+    {
+        ptr = ptr->next;
+    }
+    return ptr;
+}
+
+int search(node* head, char* var)
 {
     node *ptr = head;
     while (ptr != NULL)
@@ -71,8 +81,17 @@ node* search(node* head, char* var)
     return -1;
 }
 
+void printLL(node* head)
+{
+    node *ptr = head;
+    while (ptr != NULL)
+    {
+        printf("%s : %d\n", ptr->var, ptr->val);
+    }
+}
+
 //OPERATIONS
-int not(int* in)
+int not(int in)
 {
     if (in == 1)
     {
@@ -84,7 +103,7 @@ int not(int* in)
     }
 }
 
-int and(int* in1, int* in2)
+int and(int in1, int in2)
 {
     if (in1 == 1 && in2 == 1)
     {
@@ -93,7 +112,7 @@ int and(int* in1, int* in2)
     return 0;
 }
 
-int or(int* in1, int* in2)
+int or(int in1, int in2)
 {
     if (in1 == 1 || in2 == 1)
     {
@@ -102,17 +121,17 @@ int or(int* in1, int* in2)
     return 0;
 }
 
-int nand(int* in1, int* in2)
+int nand(int in1, int in2)
 {
-    return not(*and(in1, in2));
+    return not(and(in1, in2));
 }
 
-int nor(int* in1, int* in2)
+int nor(int in1, int in2)
 {
-    return not(*or(in1, in2));
+    return not(or(in1, in2));
 }
 
-int xor(int* in1, int* in2)
+int xor(int in1, int in2)
 {
     if (in1 == in2)
     {
@@ -122,7 +141,7 @@ int xor(int* in1, int* in2)
 }
 
 //generate solution array
-int[] genSols(int* n, int[]* a, int* i)
+int* genSols(int n, int* a, int i)
 {
     if (i == n)
     {
@@ -132,55 +151,73 @@ int[] genSols(int* n, int[]* a, int* i)
     a[i] = 0;
     genSols(n, a, i+1);
 
-    arr[i] = 1;
+    a[i] = 1;
     genSols(n, a, i+1);
+
+    return a;
 }
 
 int main(int argc, char* argv[])
 {
+    printf("PROGRAM START");
     FILE *file = fopen(argv[1], "r");
     if (file == NULL)
     {
         return 0;
     }
 
-    char* op; //operation string
-    int numVars = 0; //number of variables
-    char* in1; //first arg
-    char* in2; //second arg
-    char* out; //output variable
+    printf("FILE READ");
 
-    char** inputs = NULL; //array of INPUTVARS
-    char** outputs = NULL; //array of OUTPUTVARS
-    char** answers = NULL; //array of answers
-    node* temps = NULL; //linkedlist of temp vars
-    char* nameVar; //temp variable to store names
+    //char* op; //operation string
+    int numVars = 0; //number of variables
+    int numOuts = 0;
+    //char* in1; //first arg
+    //char* in2; //second arg
+    //char* out; //output variable
+
+    node* inputs = NULL; //array of INPUTVARS
+    node* outputs = NULL; //array of OUTPUTVARS
+    //char** answers = NULL; //array of answers
+    //node* temps = NULL; //linkedlist of temp vars
+    char* nameVar = ""; //temp variable to store names
 
     //inputs
-    fscanf(file, "%s %d ", &op, &numVars);
-    int temp[numVars];
-    int combos[] = genSols(numVars, combos, 0); //solution array
-
+    fscanf(file, "INPUTVAR %d ", &numVars);
+    //int temp[numVars];
+    //int *combos = genSols(numVars, temp, 0); //solution array
+    printf("INPUTS READ");
     for (int i = 0; i < numVars; i++)
     {
-        fscanf(file, "%s", &nameVar);
-        inputs[i] = nameVar;
+        fscanf(file, "%s", nameVar);
+        add(inputs, 0, nameVar);
     }
+    printLL(inputs);
 
     //outputs
-    fscanf(file, "%s %d ", &op, &numVars);
-    for (int j = 0; j < numVars; j++)
+    fscanf(file, "OUTPUTVAR %d ", &numOuts);
+    for (int j = 0; j < numOuts; j++)
     {
-        fscanf(file, "%s", &nameVar);
-        outputs[j] = nameVar;
+        fscanf(file, "%s", nameVar);
+        add(outputs, 0, nameVar);
     }
+    printLL(outputs);
+
+    fclose(file);
+    return 0;
 
     //FOR EACH COMBINATION OF INPUTS
     //set input vars equal to the solution array's row
     //then
-    for (int k = 0; k < pow(2, numVars); k++)
+
+    /* for (int k = 0; k < pow(2, numVars); k++)
     {
-        
+        char* nums = strtok(combos[k], " ");
+        //set input vars equal to each of the nodes
+        for (int m = 0; m < numVars; m++)
+        {
+            
+        }
+
         while (!feof(file))
         {
             fscanf(file, "%s ", &op);
@@ -218,7 +255,7 @@ int main(int argc, char* argv[])
             //move to next line
         }
 
-    }
+    } */
 
     //PRINT FORMAT CORRECTLY
     
